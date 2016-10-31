@@ -5,12 +5,12 @@ var sass         = require('gulp-sass');
 var sassdoc      = require('sassdoc');
 var concat       = require('gulp-concat');
 var cssnano      = require('gulp-cssnano');
-var del          = require('del');
 var gulp         = require('gulp');
 var modernizr    = require('gulp-modernizr');
 var pug          = require('gulp-pug');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
+var htmlmin      = require('gulp-htmlmin');
 
 var susy = require.resolve('susy');
 var breakpoint = require.resolve('breakpoint-sass');
@@ -21,25 +21,24 @@ function getDirectoryPath(filepath) {
 }
 
 gulp.task('modernizr', function() {
-    var modernizrOptions = 
+    var modernizrOptions =
     {
         // Added all options available, this should be "trimmed" to use only
         // what's really required.
         options:
         [
-            "domPrefixes",
-            "prefixes",
-            "addTest",
-            "atRule",
-            "hasEvent",
-            "html5shiv",
-            "mq",
-            "prefixed",
-            "prefixedCSS",
-            "prefixedCSSValue",
-            "testAllProps",
-            "testProp",
-            "testStyles",
+            // "domPrefixes",
+            // "prefixes",
+            // "addTest",
+            // "atRule",
+            // "hasEvent",
+            // "mq",
+            // "prefixed",
+            // "prefixedCSS",
+            // "prefixedCSSValue",
+            // "testAllProps",
+            // "testProp",
+            // "testStyles",
             "html5shiv",
             "setClasses"
         ],
@@ -93,7 +92,9 @@ gulp.task('js', ['modernizr'], function () {
 
 // create a task that ensures the `js` task is complete before
 // reloading browsers
-gulp.task('js-watch', ['js'], browserSync.reload);
+gulp.task('js-watch', ['js'], function() {
+    browserSync.reload();
+});
 
 
 // SASS tasks
@@ -155,6 +156,33 @@ gulp.task('serve', ['pug', 'sass', 'bower', 'js'], function() {
     gulp.watch("app/views/*.pug", ['pug-watch']);
 });
 
-gulp.task('default', ['clean'], function() {
-    gulp.start('serve');
+gulp.task('minify-css', ['bower-css', 'sass'], function() {
+    return gulp.src('app/tmp/css/*.css')
+        .pipe(cssnano())
+        .pipe(gulp.dest('docs/css/'));
 });
+
+gulp.task('minify-js', ['bower-js', 'js'], function() {
+    return gulp.src('app/tmp/js/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('docs/js/'));
+});
+
+gulp.task('minify-html', ['pug'], function() {
+    return gulp.src('app/tmp/*.html')
+        .pipe(htmlmin({
+            collapseBooleanAttributes: true,
+            collapseWhitespace: true
+        }))
+        .pipe(gulp.dest('docs/'));
+});
+
+// Prevent from running unexpected gulp task. I'll have them explicit.
+gulp.task('default', []);
+
+// Builds the app and serves it on development mode on a temp file. Changes are
+// watched and browser windows are updated accordingly.
+gulp.task('watch', ['serve']);
+
+// Build the app and deploys to the docs folder.
+gulp.task('deploy', ['minify-css', 'minify-js', 'minify-html']);
