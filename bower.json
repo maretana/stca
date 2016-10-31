@@ -1,0 +1,21 @@
+{
+  "name": "susy",
+  "description": "A sample project to showcase Susy Framework for responsive grids",
+  "main": "index.js",
+  "authors": [
+    "Mario Retana"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/intelligentsense/tech-talks",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">=3.1.1"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Susy",
+  "version": "0.0.0",
+  "description": "A sample project to showcase Susy Framework for responsive grids",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/intelligentsense/tech-talks/tree/master/Susy"
+  },
+  "author": "Mario Retana",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "breakpoint-sass": "^2.7.0",
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-filter": "^4.0.0",
+    "gulp-modernizr": "^1.0.0-alpha",
+    "gulp-pug": "^3.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.0",
+    "main-bower-files": "^2.11.1",
+    "modernizr": "^3.3.1",
+    "pug": "^2.0.0-alpha1",
+    "sassdoc": "^2.1.20",
+    "susy": "^2.2.12"
+  }
+}
