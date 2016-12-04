@@ -1,8 +1,7 @@
 {
-  "name": "Steam Trading Cards Artwork",
+  "name": "stca",
   "version": "0.0.0",
-  "description": "A sample project to showcase Susy Framework for responsive grids",
-  "main": "index.js",
+  "description": "A page to facilitate the search and adquisition of Steam trading cards artwork.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/maretana/stca.git"
   },
-  "author": "Mario Retana",
+  "author": "Mario Retana <maretanar@gmail.com>",
   "license": "GPL-3.0",
   "devDependencies": {
     "bower": "^1.7.7",
